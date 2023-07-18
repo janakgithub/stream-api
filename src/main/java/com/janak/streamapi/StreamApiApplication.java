@@ -122,6 +122,15 @@ public class StreamApiApplication {
         System.out.println(minSalary);
 
 
+        System.out.println("********** REDUCE ************");
+
+        Double totalSalary =
+        employees.stream()
+                .map(employee -> employee.getSalary())
+                .reduce(0.0,Double::sum);
+
+        System.out.println(totalSalary);
+
     }
 
 }
