@@ -27,7 +27,7 @@ public class StreamApiApplication {
                 .forEach(employee -> System.out.println(employee));
 
 
-        //map
+        //map intermediate operation
         //collect
         System.out.println("**********map and collect operation ************");
          List<Employee> increasedSalary = employees.stream()
@@ -39,13 +39,36 @@ public class StreamApiApplication {
                 )).collect(Collectors.toList());
         System.out.println(increasedSalary);
 
-        //filter
+        //filter intermediate operation
         System.out.println("**********filter operation ************");
-        List<Employee> employeeList = employees.stream()
+        List<Employee> employeeList = employees
+                .stream()
                 .filter(employee -> employee.getSalary() >= 4000.0)
-                .map(employee -> new Employee(employee.getFirstName(), employee.getLastName(), employee.getSalary(), employee.getProjects()))
+                .map(employee -> new Employee(
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getSalary(),
+                        employee.getProjects()))
                 .collect(Collectors.toList());
         System.out.println(employeeList);
+
+
+        System.out.println("**********find first operation ************");
+
+        Employee employee1 = employees
+                .stream()
+                .filter(employee -> employee.getSalary()>=4000.0)
+                .map(employee -> new Employee(
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getSalary(),
+                        employee.getProjects()
+                ))
+                .findFirst()
+                .orElse(null);
+        System.out.println(employee1);
+
+
 
     }
 
