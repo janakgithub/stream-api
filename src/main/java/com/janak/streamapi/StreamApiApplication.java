@@ -57,7 +57,7 @@ public class StreamApiApplication {
 
         Employee employee1 = employees
                 .stream()
-                .filter(employee -> employee.getSalary()>=4000.0)
+                .filter(employee -> employee.getSalary()>=8000.0)
                 .map(employee -> new Employee(
                         employee.getFirstName(),
                         employee.getLastName(),
@@ -68,8 +68,14 @@ public class StreamApiApplication {
                 .orElse(null);
         System.out.println(employee1);
 
+        System.out.println("********** flat map operation ************");
 
-
+        String projects = employees.stream()
+                .map(employee -> employee.getProjects())
+                .flatMap(strings -> strings.stream())
+                .collect(Collectors.joining(","));
+        System.out.println(projects);
+        
     }
 
 }
