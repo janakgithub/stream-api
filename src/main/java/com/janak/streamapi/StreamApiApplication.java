@@ -16,6 +16,9 @@ public class StreamApiApplication {
         employees.add(new Employee("janak","adhikari",4000.0, List.of("Project1","Project2")));
         employees.add(new Employee("Niki","adhikari",5000.0, List.of("Project3","Project4")));
         employees.add(new Employee("Jiaa","adhikari",6000.0, List.of("Project5","Project6")));
+        employees.add(new Employee("janak1","adhikari",2000.0, List.of("Project7","Project77")));
+        employees.add(new Employee("Niki1","adhikari",3000.0, List.of("Project8","Project88")));
+        employees.add(new Employee("Jiaa1","adhikari",5000.0, List.of("Project9","Project99")));
     }
 
 
@@ -75,7 +78,22 @@ public class StreamApiApplication {
                 .flatMap(strings -> strings.stream())
                 .collect(Collectors.joining(","));
         System.out.println(projects);
-        
+
+
+        System.out.println("********** Short Circuit operation ************");
+
+        List<Employee> shortCircuitData = employees.stream()
+                .skip(4)
+                //.limit(1)
+                .collect(Collectors.toList());
+        System.out.println(shortCircuitData);
+
+        System.out.println("********** Finite data ************");
+
+        Stream.generate(Math::random)
+                .limit(4)
+                .forEach(x-> System.out.println(x));
+
     }
 
 }
